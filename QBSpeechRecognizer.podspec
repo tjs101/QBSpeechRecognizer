@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "QBSpeechRecognizer"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "语音识别框架."
   s.description  = "语音识别框架."
 

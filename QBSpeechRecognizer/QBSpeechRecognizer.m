@@ -32,27 +32,24 @@ API_AVAILABLE(ios(10.0))
     return _instance;
 }
 
-- (void)requestAuthorization
++ (void)requestAuthorization:(void(^)(BOOL success))handler
 {
     if (@available(iOS 10.0, *)) {
         [SFSpeechRecognizer  requestAuthorization:^(SFSpeechRecognizerAuthorizationStatus status) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 switch (status) {
                     case SFSpeechRecognizerAuthorizationStatusNotDetermined:
-                        
-                        break;
                     case SFSpeechRecognizerAuthorizationStatusDenied:
-                        
-                        break;
                     case SFSpeechRecognizerAuthorizationStatusRestricted:
-                        
-                        
+                    default:
+                        if (handler) {
+                            handler(NO);
+                        }
                         break;
                     case SFSpeechRecognizerAuthorizationStatusAuthorized:
-                        
-                        break;
-                        
-                    default:
+                        if (handler) {
+                            handler(YES);
+                        }
                         break;
                 }
                 

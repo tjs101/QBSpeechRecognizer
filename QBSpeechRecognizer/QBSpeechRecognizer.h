@@ -13,7 +13,7 @@
 + (QBSpeechRecognizer *)sharedInstance;
 
 // 获取授权
-- (void)requestAuthorization;
+- (void)requestAuthorization:(void(^)(BOOL success))handler;
 
 - (void)startSpeechRecognizerLocalName:(NSString *)localeName recognizerText:(void ((^)(NSString *text)))recognizerText;
 - (void)endSpeechRecognizer;
