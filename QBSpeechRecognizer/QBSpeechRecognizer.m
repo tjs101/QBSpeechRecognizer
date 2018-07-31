@@ -32,7 +32,7 @@ API_AVAILABLE(ios(10.0))
     return _instance;
 }
 
-+ (void)requestAuthorization:(void(^)(BOOL success))handler
+- (void)requestAuthorization:(void(^)(BOOL success))handler
 {
     if (@available(iOS 10.0, *)) {
         [SFSpeechRecognizer  requestAuthorization:^(SFSpeechRecognizerAuthorizationStatus status) {

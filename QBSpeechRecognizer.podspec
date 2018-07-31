@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
   s.author             = { "tjs101" => "tjs101@live.cn" }
   s.platform     = :ios, "10.0"
   s.ios.deployment_target = "10.0"
-  s.source       = { :git => "https://github.com/tjs101/QBSpeechRecognizer.git", :tag => "#{s.version}" }
+  s.source       = { :git => "", :tag => "#{s.version}" }
   s.source_files  = "QBSpeechRecognizer/**/*.{h,m}"
 
   s.framework  = "Speech"
