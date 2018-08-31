@@ -70,13 +70,18 @@ API_AVAILABLE(ios(10.0))
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     NSError *error = nil;
     [audioSession setCategory:AVAudioSessionCategoryRecord error:&error];
-    NSParameterAssert(!error);
-    
+    if (error) {
+        return;
+    }
     [audioSession setMode:AVAudioSessionModeMeasurement error:&error];
-    NSParameterAssert(!error);
+    if (error) {
+        return;
+    }
     
     [audioSession setActive:YES withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:&error];
-    NSParameterAssert(!error);
+    if (error) {
+        return;
+    }
     
     
     if (@available(iOS 10.0, *)) {
