@@ -1,9 +1,9 @@
 //
-//  OCRSpeechRecognizer.m
-//  VoiceTranslate
+//  SPBSpeechRecognizer.m
+//  EnglishToJapanese
 //
-//  Created by quentin on 2018/6/8.
-//  Copyright © 2018年 Quentin. All rights reserved.
+//  Created by sam on 2018/6/8.
+//  Copyright © 2018年 Sam. All rights reserved.
 //
 
 #import "QBSpeechRecognizer.h"
@@ -170,7 +170,7 @@ API_AVAILABLE(ios(10.0))
     [audioSession setCategory:AVAudioSessionCategoryPlayback error:&error];
     NSParameterAssert(!error);
     
-    [audioSession setMode:AVAudioSessionModeMoviePlayback error:&error];
+    [audioSession setMode:AVAudioSessionModeDefault error:&error];
     NSParameterAssert(!error);
     
     [audioSession setActive:YES withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:&error];

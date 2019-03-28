@@ -1,9 +1,9 @@
 //
-//  OCRSpeechRecognizer.h
-//  VoiceTranslate
+//  QBBSpeechRecognizer.h
+//  EnglishToJapanese
 //
-//  Created by quentin on 2018/6/8.
-//  Copyright © 2018年 Quentin. All rights reserved.
+//  Created by sam on 2018/6/8.
+//  Copyright © 2018年 Sam. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

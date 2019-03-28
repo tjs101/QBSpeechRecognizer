@@ -1,5 +1,5 @@
 #
-#  Be sure to run `pod spec lint QBFramework_IOS.podspec' to ensure this is a
+#  Be sure to run `pod spec lint lQBFramework_IOS.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
 #
 #  To learn more about Podspec attributes see http://docs.cocoapods.org/specification.html
@@ -16,11 +16,11 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "QBSpeechRecognizer"
-  s.version      = "1.0.2"
+  s.version      = "1.0.3"
   s.summary      = "语音识别框架."
   s.description  = "语音识别框架."
 
-  s.homepage     = "https://github.com/tjs101/QBFramework_IOS"
+  s.homepage     = "https://github.com/tjs101/lQBFramework_IOS"
 
   s.license      = "MIT"
 
