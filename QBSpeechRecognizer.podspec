@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.summary      = "语音识别框架."
   s.description  = "语音识别框架."
 
-  s.homepage     = "https://github.com/tjs101/lQBFramework_IOS"
+  s.homepage     = "https://github.com"
 
   s.license      = "MIT"
 

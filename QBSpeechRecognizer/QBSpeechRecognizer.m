@@ -57,6 +57,9 @@ API_AVAILABLE(ios(10.0))
         }];
     } else {
         // Fallback on earlier versions
+        if (handler) {
+            handler(NO);
+        }
     }
 }
 
