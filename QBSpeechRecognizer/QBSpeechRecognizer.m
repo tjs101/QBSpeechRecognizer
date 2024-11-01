@@ -120,7 +120,9 @@ API_AVAILABLE(ios(10.0))
                     NSLog(@"result==%@", result.bestTranscription.formattedString);
                     isFinal = result.isFinal;
                     if (recognizerText) {
-                        recognizerText(result.bestTranscription.formattedString);
+                        if (result.bestTranscription.formattedString.length > 0) {
+                            recognizerText(result.bestTranscription.formattedString);
+                        }
                     }
                 }
                 
