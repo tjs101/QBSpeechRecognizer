@@ -105,13 +105,19 @@ API_AVAILABLE(ios(10.0))
     NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:localeName];
     if (@available(iOS 10.0, *)) {
         _speechRecognizer = [[SFSpeechRecognizer alloc] initWithLocale:locale];
-    } else {
-        // Fallback on earlier versions
-    }
-    _speechRecognizer.delegate = self;
-    
-    __weak typeof(self) weakSelf = self;
-    if (@available(iOS 10.0, *)) {
+        _speechRecognizer.delegate = self;
+        
+        if (@available(iOS 13.0, *)) {
+            // 本地识别
+            _recognitionRequest.requiresOnDeviceRecognition = YES;
+            if (@available(iOS 16.0, *)) {
+                // 自动加上标点符号
+                _recognitionRequest.addsPunctuation = YES;
+            }
+        }
+        
+        
+        __weak typeof(self) weakSelf = self;
         _recognitionTask = [_speechRecognizer recognitionTaskWithRequest:_recognitionRequest resultHandler:^(SFSpeechRecognitionResult * _Nullable result, NSError * _Nullable error) {
             
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -135,22 +141,23 @@ API_AVAILABLE(ios(10.0))
             }];
 
         }];
+        
+        AVAudioFormat *recordingFormat = [inputNode outputFormatForBus:0];
+        [inputNode removeTapOnBus:0];
+        [inputNode installTapOnBus:0 bufferSize:1024 format:recordingFormat block:^(AVAudioPCMBuffer * _Nonnull buffer, AVAudioTime * _Nonnull when) {
+            
+            if (weakSelf.recognitionRequest) {
+                [weakSelf.recognitionRequest appendAudioPCMBuffer:buffer];
+            }
+        }];
+        
+        [self.audioEngine prepare];
+        [self.audioEngine startAndReturnError:&error];
+        NSParameterAssert(!error);
+        
     } else {
         // Fallback on earlier versions
     }
-    
-    AVAudioFormat *recordingFormat = [inputNode outputFormatForBus:0];
-    [inputNode removeTapOnBus:0];
-    [inputNode installTapOnBus:0 bufferSize:1024 format:recordingFormat block:^(AVAudioPCMBuffer * _Nonnull buffer, AVAudioTime * _Nonnull when) {
-        
-        if (weakSelf.recognitionRequest) {
-            [weakSelf.recognitionRequest appendAudioPCMBuffer:buffer];
-        }
-    }];
-    
-    [self.audioEngine prepare];
-    [self.audioEngine startAndReturnError:&error];
-    NSParameterAssert(!error);
 }
 
 - (void)endSpeechRecognizer
